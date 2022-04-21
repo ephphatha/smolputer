@@ -1,0 +1,24 @@
+---
+version: "2.1"
+services:
+  swag:
+    image: lscr.io/linuxserver/swag
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Sydney
+      - DNSPLUGIN=cloudflare
+      - URL=dbqp.dev
+      - SUBDOMAINS=www,
+      - ONLY_SUBDOMAINS=false
+      - VALIDATION=http
+      - EMAIL=ephphatha@thelettereph.com
+    volumes:
+      - /home/ephphatha/docker/swag:/config
+    ports:
+      - 443:443
+      - 80:80
+    restart: unless-stopped
