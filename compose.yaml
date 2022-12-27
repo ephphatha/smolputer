@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: swag.Dockerfile
-    container_name: swag
     cap_add:
       - NET_ADMIN
     environment:
@@ -14,9 +13,9 @@ services:
       - TZ=Australia/Sydney
       - DNSPLUGIN=cloudflare
       - URL=dbqp.dev
-      - SUBDOMAINS=www,
+      - SUBDOMAINS=wildcard
       - ONLY_SUBDOMAINS=false
-      - VALIDATION=http
+      - VALIDATION=dns
       - EMAIL=ephphatha@thelettereph.com
     ports:
       - 443:443
