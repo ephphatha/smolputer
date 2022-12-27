@@ -2,7 +2,9 @@
 version: "3.8"
 services:
   swag:
-    image: lscr.io/linuxserver/swag
+    build:
+      context: .
+      dockerfile: swag.Dockerfile
     container_name: swag
     cap_add:
       - NET_ADMIN
@@ -16,9 +18,15 @@ services:
       - ONLY_SUBDOMAINS=false
       - VALIDATION=http
       - EMAIL=ephphatha@thelettereph.com
-    volumes:
-      - /home/ephphatha/docker/swag:/config
     ports:
       - 443:443
       - 80:80
     restart: unless-stopped
+    secrets:
+      - source: cloudflare-dbqp-dns
+        target: cloudflare.token
+        mode: 0400
+
+secrets:
+  cloudflare-dbqp-dns:
+    external: true
