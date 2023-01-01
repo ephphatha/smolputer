@@ -5,6 +5,10 @@ services:
     image: ghcr.io/ephphatha/swag:main
     cap_add:
       - NET_ADMIN
+    deploy:
+      placement:
+        constraints:
+          - node.labels.dev.dbqp.gateway == true
     environment:
       - PUID=1000
       - PGID=1000
