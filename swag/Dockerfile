@@ -1,4 +1,4 @@
 FROM linuxserver/swag:latest
-COPY dns-conf.sh /config/custom-cont-init.d/
-RUN chmod +x /config/custom-cont-init.d/dns-conf.sh
+COPY dns-conf.sh /etc/cont-init.d/49-dns-conf
+RUN chmod +x /etc/cont-init.d/49-dns-conf
 COPY *.conf /config/nginx/proxy-confs

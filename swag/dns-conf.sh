@@ -1,5 +1,6 @@
-#! /bin/sh -e
+#!/usr/bin/with-contenv bash
+# shellcheck shell=bash
 
-if [ -n "$CLOUDFLARE_API_TOKEN_FILE" ]; then
+if [[ -n "${CLOUDFLARE_API_TOKEN_FILE}" ]]; then
     echo "dns_cloudflare_api_token = `cat $CLOUDFLARE_API_TOKEN_FILE`" > /config/dns-conf/cloudflare.ini
 fi
