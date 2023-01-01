@@ -1,7 +1,5 @@
 FROM linuxserver/swag:latest
-WORKDIR /usr/local/bin
-COPY entrypoint.sh .
-RUN chmod +x entrypoint.sh
-WORKDIR /config/nginx/proxy-confs
-COPY *.conf .
-CMD [ "/usr/local/bin/entrypoint.sh" ]
+COPY dns-conf /etc/s6-overlay/s6-rc.d/dns-conf
+COPY entrypoint.sh /usr/local/bin
+RUN chmod +x /usr/local/bin/entrypoint.sh
+COPY *.conf /config/nginx/proxy-confs
