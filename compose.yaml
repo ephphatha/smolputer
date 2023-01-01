@@ -25,7 +25,7 @@ services:
         target: cloudflare.token
         mode: 0400
     volumes:
-      - swag_certs:/config/keys/
+      - swag_certs:/config/etc/letsencrypt/
     networks:
       - front-end
 
