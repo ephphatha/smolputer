@@ -26,6 +26,14 @@ services:
         mode: 0400
     volumes:
       - swag_certs:/config/keys/
+    networks:
+      - front-end
+
+networks:
+  front-end:
+    driver: overlay
+    attachable: true
+    name: front-end
 
 secrets:
   cloudflare-dbqp-dns:
