@@ -2,21 +2,20 @@
 version: "3.8"
 services:
   swag:
-    build:
-      context: .
-      dockerfile: swag.Dockerfile
+    image: ephphatha/swag:latest
     cap_add:
       - NET_ADMIN
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Australia/Sydney
-      - DNSPLUGIN=cloudflare
+      - EMAIL=ephphatha@thelettereph.com
       - URL=dbqp.dev
       - SUBDOMAINS=wildcard
       - ONLY_SUBDOMAINS=false
       - VALIDATION=dns
-      - EMAIL=ephphatha@thelettereph.com
+      - DNSPLUGIN=cloudflare
+      - CLOUDFLARE_API_TOKEN_FILE=/run/secrets/cloudflare.token
     ports:
       - 443:443
       - 80:80
@@ -25,7 +24,12 @@ services:
       - source: cloudflare-dbqp-dns
         target: cloudflare.token
         mode: 0400
+    volumes:
+      - swag_certs:/config/keys/
 
 secrets:
   cloudflare-dbqp-dns:
     external: true
+
+volumes:
+  swag_certs:
