@@ -2,7 +2,7 @@
 version: "3.8"
 services:
   swag:
-    image: ephphatha/swag:latest
+    image: ghcr.io/ephphatha/swag:main
     cap_add:
       - NET_ADMIN
     environment:
